@@ -21,19 +21,19 @@ cosmetic bug, it's a wrong order.
 
 ```mermaid
 flowchart LR
-  WA[Customer on WhatsApp] <--> ZAPI[WhatsApp Business API]
-  ZAPI <--> N8N[n8n orchestration]
-  N8N --> BUF[Message buffer\n(handles fragmented messages)]
-  BUF --> AGENT[AI Agent\nOpenAI, tool-calling]
-  AGENT --> MEM[(Redis\nshort-term memory)]
-  AGENT -->|tools| MENU[Get menu]
-  AGENT -->|tools| ORDER[Create order]
-  AGENT -->|tools| STATUS[Check order status]
-  ORDER --> GUARD{Deterministic\nvalidation guards}
-  GUARD -->|valid| API[Order-management REST API]
+  WA["Customer on WhatsApp"] <--> ZAPI["WhatsApp Business API"]
+  ZAPI <--> N8N["n8n orchestration"]
+  N8N --> BUF["Message buffer<br/>(handles fragmented messages)"]
+  BUF --> AGENT["AI Agent<br/>OpenAI, tool-calling"]
+  AGENT --> MEM[("Redis<br/>short-term memory")]
+  AGENT -->|tools| MENU["Get menu"]
+  AGENT -->|tools| ORDER["Create order"]
+  AGENT -->|tools| STATUS["Check order status"]
+  ORDER --> GUARD{"Deterministic<br/>validation guards"}
+  GUARD -->|valid| API["Order-management REST API"]
   GUARD -->|invalid| AGENT
   API -->|status webhook| N8N
-  N8N --> FEEDBACK[Post-order feedback poll]
+  N8N --> FEEDBACK["Post-order feedback poll"]
 ```
 
 - **n8n** orchestrates everything: webhook intake, message buffering/fragmentation handling,
