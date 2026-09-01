@@ -8,6 +8,14 @@
 > genericized — the architecture, bugs, evidence, and fixes described here are real and
 > unmodified.
 
+**At a glance**
+
+- **In production**, taking real orders — roughly **100 orders every two days**, no human in the loop for the common case.
+- **12 deterministic guards** sit between the LLM and the money. [The code is here](guards/order-validation.js).
+- Root-caused a **silent failure that had run for months** — order-status lookup that never worked, written off as vendor flakiness. One unwired branch.
+- Reverse-engineered **three undocumented vendor API behaviours**, including the one that made the model emit product IDs that looked real.
+- Tested credential and network failures against the **real** endpoints, on an isolated clone, without touching live service.
+
 ## What it does
 
 A customer messages a restaurant's WhatsApp number. An AI agent ("Yasmin") reads the menu,
@@ -230,7 +238,8 @@ real order's recorded output or explicitly marked as unverified in a comment.
 ## The guard catalogue
 
 Every guard exists because of a specific incident. They live in one validation node that runs
-before any order reaches the vendor.
+before any order reaches the vendor — **[the code is in `guards/`](guards/order-validation.js)**,
+redacted but structurally unmodified.
 
 | Guard | What it blocks | The incident that created it |
 |---|---|---|
@@ -321,7 +330,7 @@ it was clear the data was ephemeral by design) · REST APIs · WhatsApp Business
 
 ## Status
 
-In production, handling real customer orders end-to-end: menu browsing, combos with add-ons,
+In production, handling roughly 100 real orders every two days, end-to-end: menu browsing, combos with add-ons,
 delivery and pickup, cash / card / instant-transfer payment including change, zone-based delivery
 pricing, delivery-status push notifications, and post-order feedback collection.
 
