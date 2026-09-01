@@ -309,9 +309,10 @@ if (deliveryType === 'delivery') {
   }
 
   const taxaReal = Number(taxa.deliveryFee) || 0;
-  // Business rule confirmed with the client: charge a R$1 minimum when the real
-  // fee is free; when it is non-zero, use the real fee with nothing added.
-  const taxaCobrada = taxaReal === 0 ? 1 : taxaReal;
+  // The client's own pricing rule is applied here (redacted for publication).
+  // The point that generalizes: the fee is whatever the vendor resolved from the
+  // address, never a value the model produced or a zone it guessed.
+  const taxaCobrada = applyClientPricingRule(taxaReal);
 
   details.deliveryFeeID = taxa.deliveryFeeID;
   details.deliveryFee = taxaReal;
