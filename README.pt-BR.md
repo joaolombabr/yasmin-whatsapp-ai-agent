@@ -8,6 +8,14 @@
 > removidos ou generalizados — a arquitetura, os bugs, as evidências e as correções descritos
 > aqui são reais e não foram alterados.
 
+**Resumo rápido**
+
+- **Em produção**, recebendo pedidos reais — cerca de **100 pedidos a cada dois dias**, sem humano no meio no caso comum.
+- **12 guardas determinísticas** entre o LLM e o dinheiro. [O código está aqui](guards/order-validation.js).
+- Causa raiz de uma **falha silenciosa que durava meses** — consulta de status que nunca funcionou, atribuída a instabilidade do fornecedor. Uma ramificação sem ligação.
+- Engenharia reversa de **três comportamentos não documentados da API** do fornecedor, incluindo o que fazia o modelo emitir IDs de produto que pareciam reais.
+- Testes de falha de credencial e de rede contra os endpoints **reais**, em clone isolado, sem tocar no atendimento ao vivo.
+
 ## O que faz
 
 Um cliente manda mensagem para o WhatsApp de uma hamburgueria. Um agente de IA ("Yasmin") lê o
@@ -234,7 +242,8 @@ gravada de um pedido real, ou explicitamente marcado como não verificado num co
 ## O catálogo de travas
 
 Cada trava existe por causa de um incidente específico. Todas vivem num node de validação que roda
-antes de qualquer pedido chegar ao fornecedor.
+antes de qualquer pedido chegar ao fornecedor — **[o código está em `guards/`](guards/order-validation.js)**,
+com dados sensíveis removidos mas estrutura inalterada.
 
 | Trava | O que barra | O incidente que a criou |
 |---|---|---|
@@ -328,7 +337,7 @@ WhatsApp
 
 ## Status
 
-Em produção, atendendo pedidos reais de ponta a ponta: consulta de cardápio, combos com
+Em produção, atendendo cerca de 100 pedidos reais a cada dois dias, de ponta a ponta: consulta de cardápio, combos com
 adicionais, entrega e retirada, pagamento em dinheiro / cartão / Pix incluindo troco, taxa de
 entrega por zona, notificações de status da entrega e coleta de feedback pós-pedido.
 
