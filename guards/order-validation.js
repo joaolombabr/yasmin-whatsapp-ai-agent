@@ -14,7 +14,12 @@
  * source — the bearer token and base URL arrive as runtime values. The control
  * flow, the checks and the rejection messages are unmodified.
  *
- * Comments translated from the Portuguese originals.
+ * Comments translated from the Portuguese originals. Internal order numbers
+ * removed.
+ *
+ * This is the first guard layer (snapshot from September 2026). Later layers —
+ * the order-state builder, the confirmation gate and the payment lock — run
+ * around it and are described in the main README.
  */
 
 const t = $('When Executed by Another Workflow').item.json;
@@ -49,7 +54,7 @@ function estaDisponivel(o) {
 }
 
 // The vendor only accepts add-ons as an array of OBJECTS {id, qty}. A raw id
-// array ([5301381]) returns a generic 500 "Server Error" — a real bug, found
+// array ([<id>]) returns a generic 500 "Server Error" — a real bug, found
 // 2026-08-24, undocumented.
 function normalizarExtras(extras) {
   if (!Array.isArray(extras)) return [];
@@ -83,7 +88,7 @@ const payments = lerJson(t.PaymentsJSON, []);
 //
 // If the agent omits the field, the code does NOT assume pickup: it refuses.
 // The previous default was 'balcony', so a premature tool call silently became
-// a counter-pickup order (orderNo 136).
+// a counter-pickup order on a real ticket.
 // ---------------------------------------------------------------------------
 
 const deliveryType = String(t.DeliveryType || '').trim().toLowerCase();
@@ -97,7 +102,7 @@ if (deliveryType !== 'delivery' && deliveryType !== 'balcony') {
 //
 // Guard 1 only catches an empty or invalid value. When the agent INVENTS a
 // valid one ("balcony") without having asked, it sails through — that is what
-// created orderNo 143: the customer answered "everything" about add-ons and the
+// happened on a real order: the customer answered "everything" about add-ons and the
 // order was created as pickup, with delivery never mentioned by anyone.
 //
 // Five rounds of prompt reinforcement failed to hold this, because it is an LLM
@@ -243,8 +248,8 @@ const itemSemBebida = !itemInvalido && !itemInconsistente && !itemExtraInvalido 
 // GUARD 9 — item already charged in this conversation.
 // "Salvar Itens Pedido" used to store only the current order's ids, overwriting
 // the previous ones — so with two Criar_pedido calls in one turn, the second
-// read an already-overwritten key and let a charged item through (orderNo 136
-// and 138 both charged the same combo). The accumulated list is now computed
+// read an already-overwritten key and let a charged item through (two real
+// orders charged the same combo). The accumulated list is now computed
 // here and the Redis node only writes the result.
 const itemJaPedidoAnterior = !itemInvalido && !itemInconsistente && !itemExtraInvalido && !itemBebidaInvalida && !itemSemBebida &&
   itensBrutos.find(o => idsJaPedidos.includes(Number(o.id)));

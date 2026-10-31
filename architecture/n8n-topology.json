@@ -1,0 +1,3262 @@
+{
+ "description": "Structure-only topology of the production n8n project (16 workflows). Node names are the production names (Portuguese). Parameters, prompts, code, credentials, URLs, webhook paths and all internal ids were removed; the order-management vendor and the WhatsApp gateway are genericized.",
+ "exportedFrom": "full export of 2026-10-14",
+ "workflows": [
+  {
+   "workflow": "Agente Atendimento - Master",
+   "nodeCount": 113,
+   "nodes": [
+    {
+     "name": "Switch1",
+     "type": "switch"
+    },
+    {
+     "name": "Transcrever Áudio1",
+     "type": "langchain.openAi"
+    },
+    {
+     "name": "OpenAI1",
+     "type": "langchain.openAi"
+    },
+    {
+     "name": "Wait1",
+     "type": "wait"
+    },
+    {
+     "name": "ComparandoMensagens1",
+     "type": "if"
+    },
+    {
+     "name": "Mensagem1",
+     "type": "set"
+    },
+    {
+     "name": "Buffer",
+     "type": "redis"
+    },
+    {
+     "name": "Buffer 3",
+     "type": "redis"
+    },
+    {
+     "name": "Add Texto Buffer1",
+     "type": "redis"
+    },
+    {
+     "name": "Apagar Buffer1",
+     "type": "redis"
+    },
+    {
+     "name": "Mensagem Texto1",
+     "type": "set"
+    },
+    {
+     "name": "Mensagem Audio1",
+     "type": "set"
+    },
+    {
+     "name": "Mensagem Imagem1",
+     "type": "set"
+    },
+    {
+     "name": "Add Audio Buffer1",
+     "type": "redis"
+    },
+    {
+     "name": "Add Error Buffer1",
+     "type": "redis"
+    },
+    {
+     "name": "Extract from File",
+     "type": "extractFromFile"
+    },
+    {
+     "name": "Mensagem Erro1",
+     "type": "set"
+    },
+    {
+     "name": "Add PDF Buffer1",
+     "type": "redis"
+    },
+    {
+     "name": "Add Imagem Buffer1",
+     "type": "redis"
+    },
+    {
+     "name": "Redis",
+     "type": "redis"
+    },
+    {
+     "name": "No Operation, do nothing6",
+     "type": "noOp"
+    },
+    {
+     "name": "Bot Desativado?1",
+     "type": "if"
+    },
+    {
+     "name": "No Operation, do nothing",
+     "type": "noOp"
+    },
+    {
+     "name": "Mensagem Documento PDF",
+     "type": "set"
+    },
+    {
+     "name": "HTTP Request",
+     "type": "httpRequest"
+    },
+    {
+     "name": "HTTP Request1",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Add Texto Buffer",
+     "type": "redis"
+    },
+    {
+     "name": "Mensagem Texto",
+     "type": "set"
+    },
+    {
+     "name": "Humano Respondeu?",
+     "type": "if"
+    },
+    {
+     "name": "Pausar Agente 1min",
+     "type": "redis",
+     "disabled": true
+    },
+    {
+     "name": "Validador Humanizador",
+     "type": "langchain.agent"
+    },
+    {
+     "name": "Split Out1",
+     "type": "splitOut"
+    },
+    {
+     "name": "Loop Over Items1",
+     "type": "splitInBatches"
+    },
+    {
+     "name": "Wait3",
+     "type": "wait"
+    },
+    {
+     "name": "No Operation, do nothing5",
+     "type": "noOp"
+    },
+    {
+     "name": "Enviar Mensagem4",
+     "type": "httpRequest"
+    },
+    {
+     "name": "OpenAI Chat Model1",
+     "type": "langchain.lmChatOpenAi",
+     "model": "gpt-4.1-mini"
+    },
+    {
+     "name": "Postgres Chat Memory1",
+     "type": "langchain.memoryPostgresChat"
+    },
+    {
+     "name": "Parametros Fluxo",
+     "type": "set"
+    },
+    {
+     "name": "Filtro Inicial",
+     "type": "filter"
+    },
+    {
+     "name": "Dados Lead",
+     "type": "set"
+    },
+    {
+     "name": "Status Loja",
+     "type": "executeWorkflow",
+     "calls": "Sub - API Vendor"
+    },
+    {
+     "name": "Especialista - Pós-venda",
+     "type": "executeWorkflow",
+     "calls": "Especialista - Pós-venda"
+    },
+    {
+     "name": "Classificador",
+     "type": "langchain.chainLlm"
+    },
+    {
+     "name": "OpenAI Chat Model2",
+     "type": "langchain.lmChatOpenAi",
+     "model": "gpt-4.1-mini"
+    },
+    {
+     "name": "Switch",
+     "type": "switch"
+    },
+    {
+     "name": "Especialista - Atendimento",
+     "type": "executeWorkflow",
+     "calls": "Especialista - Atendimento"
+    },
+    {
+     "name": "Especialista - Pedidos",
+     "type": "executeWorkflow",
+     "calls": "Especialista - Pedidos"
+    },
+    {
+     "name": "Dividir Mensagens",
+     "type": "code"
+    },
+    {
+     "name": "Checar Em Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Em Pedido?",
+     "type": "if"
+    },
+    {
+     "name": "Marcar Em Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Mensagem Enquete",
+     "type": "set"
+    },
+    {
+     "name": "Add Texto Buffer2",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Entrega Perguntada",
+     "type": "redis"
+    },
+    {
+     "name": "Checar Aguardando Relato",
+     "type": "redis"
+    },
+    {
+     "name": "Aguardando Relato?",
+     "type": "if"
+    },
+    {
+     "name": "Buscar Pedido Criado",
+     "type": "redis"
+    },
+    {
+     "name": "Barrar Confirmacao Falsa",
+     "type": "code"
+    },
+    {
+     "name": "Buscar Pix Pendente",
+     "type": "redis"
+    },
+    {
+     "name": "Comprovante de Pix?",
+     "type": "if"
+    },
+    {
+     "name": "Marcar Comprovante Recebido",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Pix Pendente",
+     "type": "redis"
+    },
+    {
+     "name": "Avisar Loja Comprovante",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Resposta Comprovante",
+     "type": "code"
+    },
+    {
+     "name": "Buscar Estado Pix",
+     "type": "redis"
+    },
+    {
+     "name": "Enquete Pendente?",
+     "type": "if"
+    },
+    {
+     "name": "Enviar Enquete Feedback",
+     "type": "executeWorkflow",
+     "calls": "Sub - Enviar Enquete Feedback"
+    },
+    {
+     "name": "Marcar Pagamento Perguntado",
+     "type": "redis"
+    },
+    {
+     "name": "Pediu Atendimento Humano",
+     "type": "if"
+    },
+    {
+     "name": "Desativar Agente Humano",
+     "type": "redis"
+    },
+    {
+     "name": "Avisar Loja Transferencia",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Responder Transferencia",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Webhook1",
+     "type": "webhook"
+    },
+    {
+     "name": "Gravar Fala Atendente",
+     "type": "postgres"
+    },
+    {
+     "name": "Pausar Agente Humano",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Cartao Tipo",
+     "type": "redis"
+    },
+    {
+     "name": "Checar Lock",
+     "type": "redis"
+    },
+    {
+     "name": "Lock Livre?",
+     "type": "if"
+    },
+    {
+     "name": "Esperar Lock",
+     "type": "wait"
+    },
+    {
+     "name": "Pegar Lock",
+     "type": "redis"
+    },
+    {
+     "name": "Buffer Pos Lock",
+     "type": "redis"
+    },
+    {
+     "name": "Buffer Tem Msg?",
+     "type": "if"
+    },
+    {
+     "name": "Liberar Lock",
+     "type": "redis"
+    },
+    {
+     "name": "Mapear LID",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Telefone do LID",
+     "type": "redis"
+    },
+    {
+     "name": "Montar Fala Atendente",
+     "type": "code"
+    },
+    {
+     "name": "Telefone Resolvido?",
+     "type": "if"
+    },
+    {
+     "name": "Comando #bot?",
+     "type": "if"
+    },
+    {
+     "name": "Reativar Bot",
+     "type": "redis"
+    },
+    {
+     "name": "Sem Mapa do LID",
+     "type": "noOp"
+    },
+    {
+     "name": "Buscar Proposta",
+     "type": "redis"
+    },
+    {
+     "name": "Checar Confirmacao Cliente",
+     "type": "code"
+    },
+    {
+     "name": "Salvar Confirmacao",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Pedido Ativo",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Proposta Pos",
+     "type": "redis"
+    },
+    {
+     "name": "Texto Literal?",
+     "type": "if"
+    },
+    {
+     "name": "Detectar Entrega Tipo",
+     "type": "code"
+    },
+    {
+     "name": "Marcar Entrega Tipo",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Estado Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Atualizar Estado Pedido",
+     "type": "code"
+    },
+    {
+     "name": "Salvar Estado Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Pedido Recente",
+     "type": "redis"
+    },
+    {
+     "name": "Rota Pos Pedido",
+     "type": "code"
+    },
+    {
+     "name": "Rota?",
+     "type": "switch"
+    },
+    {
+     "name": "Buscar Aguardando Bebida",
+     "type": "redis"
+    },
+    {
+     "name": "Avisar Loja Refri",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Limpar Aguardando Bebida",
+     "type": "redis"
+    },
+    {
+     "name": "Resposta Refri",
+     "type": "code"
+    },
+    {
+     "name": "Checar Pedido Ativo",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Bebida Oferecida",
+     "type": "redis"
+    },
+    {
+     "name": "Tem Resto?",
+     "type": "if"
+    },
+    {
+     "name": "Enviar Comprovante Loja",
+     "type": "httpRequest"
+    }
+   ],
+   "edges": [
+    {
+     "from": "Switch1",
+     "to": "Mensagem Texto1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Switch1",
+     "to": "Mensagem Audio1",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Switch1",
+     "to": "Mensagem Imagem1",
+     "kind": "main",
+     "output": 2
+    },
+    {
+     "from": "Switch1",
+     "to": "Mensagem Documento PDF",
+     "kind": "main",
+     "output": 3
+    },
+    {
+     "from": "Switch1",
+     "to": "Mensagem Texto",
+     "kind": "main",
+     "output": 4
+    },
+    {
+     "from": "Switch1",
+     "to": "Mensagem Enquete",
+     "kind": "main",
+     "output": 5
+    },
+    {
+     "from": "Switch1",
+     "to": "Mensagem Erro1",
+     "kind": "main",
+     "output": 6
+    },
+    {
+     "from": "Transcrever Áudio1",
+     "to": "Add Audio Buffer1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "OpenAI1",
+     "to": "Add Imagem Buffer1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Wait1",
+     "to": "Buffer 3",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "ComparandoMensagens1",
+     "to": "Checar Lock",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "ComparandoMensagens1",
+     "to": "No Operation, do nothing6",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Mensagem1",
+     "to": "Detectar Entrega Tipo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buffer",
+     "to": "Wait1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buffer 3",
+     "to": "ComparandoMensagens1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Add Texto Buffer1",
+     "to": "Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Apagar Buffer1",
+     "to": "Mensagem1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Mensagem Texto1",
+     "to": "Add Texto Buffer1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Mensagem Audio1",
+     "to": "HTTP Request",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Mensagem Imagem1",
+     "to": "OpenAI1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Add Audio Buffer1",
+     "to": "Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Add Error Buffer1",
+     "to": "Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Extract from File",
+     "to": "Add PDF Buffer1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Mensagem Erro1",
+     "to": "Add Error Buffer1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Add PDF Buffer1",
+     "to": "Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Add Imagem Buffer1",
+     "to": "Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis",
+     "to": "Bot Desativado?1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Bot Desativado?1",
+     "to": "No Operation, do nothing",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Bot Desativado?1",
+     "to": "Switch1",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Mensagem Documento PDF",
+     "to": "HTTP Request1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request",
+     "to": "Transcrever Áudio1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request1",
+     "to": "Extract from File",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Add Texto Buffer",
+     "to": "Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Mensagem Texto",
+     "to": "Add Texto Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Humano Respondeu?",
+     "to": "Buscar Telefone do LID",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Humano Respondeu?",
+     "to": "Mapear LID",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Split Out1",
+     "to": "Loop Over Items1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Loop Over Items1",
+     "to": "Liberar Lock",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Loop Over Items1",
+     "to": "Enviar Mensagem4",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Wait3",
+     "to": "Loop Over Items1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Enviar Mensagem4",
+     "to": "Wait3",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Validador Humanizador",
+     "to": "Dividir Mensagens",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "OpenAI Chat Model1",
+     "to": "Validador Humanizador",
+     "kind": "ai_languageModel"
+    },
+    {
+     "from": "Postgres Chat Memory1",
+     "to": "Validador Humanizador",
+     "kind": "ai_memory"
+    },
+    {
+     "from": "Parametros Fluxo",
+     "to": "Filtro Inicial",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Filtro Inicial",
+     "to": "Dados Lead",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Dados Lead",
+     "to": "Humano Respondeu?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Status Loja",
+     "to": "Checar Em Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "OpenAI Chat Model2",
+     "to": "Classificador",
+     "kind": "ai_languageModel"
+    },
+    {
+     "from": "Classificador",
+     "to": "Switch",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Switch",
+     "to": "Especialista - Pedidos",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Switch",
+     "to": "Especialista - Pós-venda",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Switch",
+     "to": "Especialista - Atendimento",
+     "kind": "main",
+     "output": 2
+    },
+    {
+     "from": "Especialista - Atendimento",
+     "to": "Validador Humanizador",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Especialista - Pós-venda",
+     "to": "Validador Humanizador",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Especialista - Pedidos",
+     "to": "Marcar Entrega Perguntada",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Especialista - Pedidos",
+     "to": "Buscar Pedido Criado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Dividir Mensagens",
+     "to": "Split Out1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Checar Em Pedido",
+     "to": "Checar Pedido Ativo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Em Pedido?",
+     "to": "Buscar Proposta",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Em Pedido?",
+     "to": "Checar Aguardando Relato",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Marcar Em Pedido",
+     "to": "Barrar Confirmacao Falsa",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Mensagem Enquete",
+     "to": "Add Texto Buffer2",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Add Texto Buffer2",
+     "to": "Buffer",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Checar Aguardando Relato",
+     "to": "Aguardando Relato?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Aguardando Relato?",
+     "to": "Especialista - Pós-venda",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Aguardando Relato?",
+     "to": "Buscar Pedido Recente",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Buscar Pedido Criado",
+     "to": "Buscar Pedido Ativo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Barrar Confirmacao Falsa",
+     "to": "Texto Literal?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Pix Pendente",
+     "to": "Comprovante de Pix?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Comprovante de Pix?",
+     "to": "Buscar Estado Pix",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Comprovante de Pix?",
+     "to": "Pediu Atendimento Humano",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Marcar Comprovante Recebido",
+     "to": "Limpar Pix Pendente",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Pix Pendente",
+     "to": "Avisar Loja Comprovante",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Avisar Loja Comprovante",
+     "to": "Enviar Comprovante Loja",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Resposta Comprovante",
+     "to": "Validador Humanizador",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Estado Pix",
+     "to": "Marcar Comprovante Recebido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Enquete Pendente?",
+     "to": "Enviar Enquete Feedback",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Enquete Pendente?",
+     "to": "Resposta Comprovante",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Enviar Enquete Feedback",
+     "to": "Resposta Comprovante",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Entrega Perguntada",
+     "to": "Marcar Pagamento Perguntado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Pediu Atendimento Humano",
+     "to": "Desativar Agente Humano",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Pediu Atendimento Humano",
+     "to": "Status Loja",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Desativar Agente Humano",
+     "to": "Avisar Loja Transferencia",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Avisar Loja Transferencia",
+     "to": "Responder Transferencia",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Webhook1",
+     "to": "Parametros Fluxo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Gravar Fala Atendente",
+     "to": "Pausar Agente Humano",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Pagamento Perguntado",
+     "to": "Marcar Cartao Tipo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Checar Lock",
+     "to": "Lock Livre?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Lock Livre?",
+     "to": "Pegar Lock",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Lock Livre?",
+     "to": "Esperar Lock",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Esperar Lock",
+     "to": "Checar Lock",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Pegar Lock",
+     "to": "Buffer Pos Lock",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buffer Pos Lock",
+     "to": "Buffer Tem Msg?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buffer Tem Msg?",
+     "to": "Apagar Buffer1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buffer Tem Msg?",
+     "to": "Liberar Lock",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Responder Transferencia",
+     "to": "Liberar Lock",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Mapear LID",
+     "to": "Redis",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Telefone do LID",
+     "to": "Montar Fala Atendente",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Montar Fala Atendente",
+     "to": "Telefone Resolvido?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Telefone Resolvido?",
+     "to": "Comando #bot?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Telefone Resolvido?",
+     "to": "Sem Mapa do LID",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Comando #bot?",
+     "to": "Reativar Bot",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Comando #bot?",
+     "to": "Gravar Fala Atendente",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Buscar Proposta",
+     "to": "Checar Confirmacao Cliente",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Checar Confirmacao Cliente",
+     "to": "Salvar Confirmacao",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Salvar Confirmacao",
+     "to": "Especialista - Pedidos",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Pedido Ativo",
+     "to": "Buscar Proposta Pos",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Proposta Pos",
+     "to": "Marcar Em Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Texto Literal?",
+     "to": "Dividir Mensagens",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Texto Literal?",
+     "to": "Validador Humanizador",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Detectar Entrega Tipo",
+     "to": "Marcar Entrega Tipo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Entrega Tipo",
+     "to": "Buscar Estado Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Estado Pedido",
+     "to": "Atualizar Estado Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Atualizar Estado Pedido",
+     "to": "Salvar Estado Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Salvar Estado Pedido",
+     "to": "Buscar Pix Pendente",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Pedido Recente",
+     "to": "Buscar Aguardando Bebida",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Rota Pos Pedido",
+     "to": "Rota?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Rota?",
+     "to": "Liberar Lock",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Rota?",
+     "to": "Especialista - Pós-venda",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Rota?",
+     "to": "Classificador",
+     "kind": "main",
+     "output": 2
+    },
+    {
+     "from": "Rota?",
+     "to": "Avisar Loja Refri",
+     "kind": "main",
+     "output": 3
+    },
+    {
+     "from": "Buscar Aguardando Bebida",
+     "to": "Rota Pos Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Avisar Loja Refri",
+     "to": "Limpar Aguardando Bebida",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Aguardando Bebida",
+     "to": "Tem Resto?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Resposta Refri",
+     "to": "Dividir Mensagens",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Checar Pedido Ativo",
+     "to": "Em Pedido?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Cartao Tipo",
+     "to": "Marcar Bebida Oferecida",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Tem Resto?",
+     "to": "Especialista - Pós-venda",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Tem Resto?",
+     "to": "Resposta Refri",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Enviar Comprovante Loja",
+     "to": "Enquete Pendente?",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Especialista - Atendimento",
+   "nodeCount": 10,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "AI Agent",
+     "type": "langchain.agent"
+    },
+    {
+     "name": "OpenAI Chat Model",
+     "type": "langchain.lmChatOpenAi",
+     "model": "gpt-4.1-mini"
+    },
+    {
+     "name": "Postgres Chat Memory",
+     "type": "langchain.memoryPostgresChat"
+    },
+    {
+     "name": "Consultar_cardapio",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - API Vendor"
+    },
+    {
+     "name": "Enviar_Foto_Cardapio_v2",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - Enviar Foto Cardapio"
+    },
+    {
+     "name": "Checar Ja Atendido",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Ja Atendido",
+     "type": "redis"
+    },
+    {
+     "name": "Consultar_Tempo_Espera",
+     "type": "redisTool"
+    },
+    {
+     "name": "Escalar_Humano",
+     "type": "langchain.toolWorkflow"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Checar Ja Atendido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "OpenAI Chat Model",
+     "to": "AI Agent",
+     "kind": "ai_languageModel"
+    },
+    {
+     "from": "Postgres Chat Memory",
+     "to": "AI Agent",
+     "kind": "ai_memory"
+    },
+    {
+     "from": "Consultar_cardapio",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Enviar_Foto_Cardapio_v2",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Checar Ja Atendido",
+     "to": "Marcar Ja Atendido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Ja Atendido",
+     "to": "AI Agent",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Consultar_Tempo_Espera",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Escalar_Humano",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    }
+   ]
+  },
+  {
+   "workflow": "Especialista - Pedidos",
+   "nodeCount": 10,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "AI Agent",
+     "type": "langchain.agent"
+    },
+    {
+     "name": "OpenAI Chat Model",
+     "type": "langchain.lmChatOpenAi",
+     "model": "gpt-4.1-mini"
+    },
+    {
+     "name": "Postgres Chat Memory",
+     "type": "langchain.memoryPostgresChat"
+    },
+    {
+     "name": "Consultar_cardapio",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - API Vendor"
+    },
+    {
+     "name": "Criar_pedido",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - Criar Pedido Vendor"
+    },
+    {
+     "name": "Enviar_Foto_Cardapio_v2",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - Enviar Foto Cardapio"
+    },
+    {
+     "name": "Consultar_Bebidas_Combo",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - Perguntar Bebida Combo"
+    },
+    {
+     "name": "Consultar_Tempo_Espera",
+     "type": "redisTool"
+    },
+    {
+     "name": "Escalar_Pedido_Humano",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - Escalar Pedido Humano"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "AI Agent",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "OpenAI Chat Model",
+     "to": "AI Agent",
+     "kind": "ai_languageModel"
+    },
+    {
+     "from": "Postgres Chat Memory",
+     "to": "AI Agent",
+     "kind": "ai_memory"
+    },
+    {
+     "from": "Consultar_cardapio",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Criar_pedido",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Enviar_Foto_Cardapio_v2",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Consultar_Bebidas_Combo",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Consultar_Tempo_Espera",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Escalar_Pedido_Humano",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    }
+   ]
+  },
+  {
+   "workflow": "Especialista - Pós-venda",
+   "nodeCount": 22,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "AI Agent",
+     "type": "langchain.agent"
+    },
+    {
+     "name": "OpenAI Chat Model",
+     "type": "langchain.lmChatOpenAi",
+     "model": "gpt-4.1-mini"
+    },
+    {
+     "name": "Postgres Chat Memory",
+     "type": "langchain.memoryPostgresChat"
+    },
+    {
+     "name": "DesativarAgente",
+     "type": "redisTool"
+    },
+    {
+     "name": "Gravar_Feedback_Positivo",
+     "type": "postgresTool",
+     "disabled": true
+    },
+    {
+     "name": "consultar_status_pedido",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - API Vendor"
+    },
+    {
+     "name": "Enviar_Feedback_Negativo",
+     "type": "langchain.toolWorkflow",
+     "disabled": true,
+     "calls": "Sub - Enviar Feedback Negativo"
+    },
+    {
+     "name": "Checar Aguardando Relato",
+     "type": "redis"
+    },
+    {
+     "name": "Tem Relato Pendente?",
+     "type": "if"
+    },
+    {
+     "name": "Registrar Reclamacao",
+     "type": "executeWorkflow",
+     "calls": "Sub - Enviar Feedback Negativo"
+    },
+    {
+     "name": "Limpar Aguardando Relato",
+     "type": "redis"
+    },
+    {
+     "name": "Resposta Reclamacao",
+     "type": "code"
+    },
+    {
+     "name": "Marcar Se For Ruim",
+     "type": "redis"
+    },
+    {
+     "name": "E Elogio?",
+     "type": "if"
+    },
+    {
+     "name": "Gravar Elogio",
+     "type": "postgres"
+    },
+    {
+     "name": "Resposta Elogio",
+     "type": "code"
+    },
+    {
+     "name": "Consultar_Tempo_Espera",
+     "type": "redisTool"
+    },
+    {
+     "name": "Solicitar_Alteracao_Pedido",
+     "type": "langchain.toolWorkflow"
+    },
+    {
+     "name": "Marcar Pergunta Relato",
+     "type": "redis"
+    },
+    {
+     "name": "Devolver Saida",
+     "type": "code"
+    },
+    {
+     "name": "Consultar_cardapio",
+     "type": "langchain.toolWorkflow",
+     "calls": "Sub - API Vendor"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Checar Aguardando Relato",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "OpenAI Chat Model",
+     "to": "AI Agent",
+     "kind": "ai_languageModel"
+    },
+    {
+     "from": "Postgres Chat Memory",
+     "to": "AI Agent",
+     "kind": "ai_memory"
+    },
+    {
+     "from": "DesativarAgente",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Gravar_Feedback_Positivo",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "consultar_status_pedido",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Enviar_Feedback_Negativo",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Checar Aguardando Relato",
+     "to": "Tem Relato Pendente?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Tem Relato Pendente?",
+     "to": "Registrar Reclamacao",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Tem Relato Pendente?",
+     "to": "E Elogio?",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Registrar Reclamacao",
+     "to": "Limpar Aguardando Relato",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Aguardando Relato",
+     "to": "Resposta Reclamacao",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Se For Ruim",
+     "to": "AI Agent",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "E Elogio?",
+     "to": "Gravar Elogio",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "E Elogio?",
+     "to": "Marcar Se For Ruim",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Gravar Elogio",
+     "to": "Resposta Elogio",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Consultar_Tempo_Espera",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "Solicitar_Alteracao_Pedido",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    },
+    {
+     "from": "AI Agent",
+     "to": "Marcar Pergunta Relato",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Pergunta Relato",
+     "to": "Devolver Saida",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Consultar_cardapio",
+     "to": "AI Agent",
+     "kind": "ai_tool"
+    }
+   ]
+  },
+  {
+   "workflow": "Painel - Feedback",
+   "nodeCount": 4,
+   "nodes": [
+    {
+     "name": "Webhook",
+     "type": "webhook"
+    },
+    {
+     "name": "Montar HTML",
+     "type": "code"
+    },
+    {
+     "name": "Respond",
+     "type": "respondToWebhook"
+    },
+    {
+     "name": "ler feedbacks",
+     "type": "postgres"
+    }
+   ],
+   "edges": [
+    {
+     "from": "Webhook",
+     "to": "ler feedbacks",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Montar HTML",
+     "to": "Respond",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "ler feedbacks",
+     "to": "Montar HTML",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Schedule - Lembrete Refri Combo",
+   "nodeCount": 6,
+   "nodes": [
+    {
+     "name": "Schedule Trigger",
+     "type": "scheduleTrigger"
+    },
+    {
+     "name": "Buscar Pendentes",
+     "type": "redis"
+    },
+    {
+     "name": "Edit Fields",
+     "type": "set"
+    },
+    {
+     "name": "Montar Avisos",
+     "type": "code"
+    },
+    {
+     "name": "Avisar Loja",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Apagar Pendente",
+     "type": "redis"
+    }
+   ],
+   "edges": [
+    {
+     "from": "Buscar Pendentes",
+     "to": "Montar Avisos",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Avisar Loja",
+     "to": "Apagar Pendente",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Schedule Trigger",
+     "to": "Edit Fields",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Edit Fields",
+     "to": "Buscar Pendentes",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Montar Avisos",
+     "to": "Avisar Loja",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Schedule - Tempo de Espera",
+   "nodeCount": 14,
+   "nodes": [
+    {
+     "name": "Schedule Trigger",
+     "type": "scheduleTrigger"
+    },
+    {
+     "name": "If Token Cardapio?",
+     "type": "if"
+    },
+    {
+     "name": "HTTP Login Cardapio",
+     "type": "httpRequest"
+    },
+    {
+     "name": "HTTP Request",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Parametros Fluxo",
+     "type": "set"
+    },
+    {
+     "name": "Redis Token - Previa",
+     "type": "redis"
+    },
+    {
+     "name": "Redis Token - definitivo",
+     "type": "redis"
+    },
+    {
+     "name": "Code in JavaScript",
+     "type": "code"
+    },
+    {
+     "name": "Redis Set Token",
+     "type": "redis"
+    },
+    {
+     "name": "Redis Set tempo entrega",
+     "type": "redis"
+    },
+    {
+     "name": "Redis Tempo Entrega - Consulta",
+     "type": "redis"
+    },
+    {
+     "name": "If Tempo Entrega",
+     "type": "if"
+    },
+    {
+     "name": "Redis Tempo Entrega - Delete",
+     "type": "redis"
+    },
+    {
+     "name": "Tratar Erro Token",
+     "type": "code"
+    }
+   ],
+   "edges": [
+    {
+     "from": "If Token Cardapio?",
+     "to": "Redis Token - definitivo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Token Cardapio?",
+     "to": "HTTP Login Cardapio",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "HTTP Login Cardapio",
+     "to": "Redis Set Token",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request",
+     "to": "Code in JavaScript",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request",
+     "to": "Tratar Erro Token",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Schedule Trigger",
+     "to": "Parametros Fluxo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Parametros Fluxo",
+     "to": "Redis Token - Previa",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Token - Previa",
+     "to": "If Token Cardapio?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Token - definitivo",
+     "to": "HTTP Request",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Set Token",
+     "to": "Redis Token - definitivo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Code in JavaScript",
+     "to": "Redis Tempo Entrega - Consulta",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Tempo Entrega - Consulta",
+     "to": "If Tempo Entrega",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Tempo Entrega",
+     "to": "Redis Tempo Entrega - Delete",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Tempo Entrega",
+     "to": "Redis Set tempo entrega",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Redis Tempo Entrega - Delete",
+     "to": "Redis Set tempo entrega",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Tratar Erro Token",
+     "to": "HTTP Login Cardapio",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - API Vendor",
+   "nodeCount": 32,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Operacao?",
+     "type": "switch"
+    },
+    {
+     "name": "HTTP Login Token",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Redis Set Token",
+     "type": "redis"
+    },
+    {
+     "name": "Redis Token Cardapio",
+     "type": "redis"
+    },
+    {
+     "name": "If Token Cardapio?",
+     "type": "if"
+    },
+    {
+     "name": "HTTP Login Cardapio",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Redis Set Token Cardapio",
+     "type": "redis"
+    },
+    {
+     "name": "HTTP Request",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Redis Token Menu",
+     "type": "redis"
+    },
+    {
+     "name": "Status Loja",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Enxugar Cardapio",
+     "type": "code"
+    },
+    {
+     "name": "Redis Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "If Pedido Existe?",
+     "type": "if"
+    },
+    {
+     "name": "Redis Token Status",
+     "type": "redis"
+    },
+    {
+     "name": "If Token Status?",
+     "type": "if"
+    },
+    {
+     "name": "HTTP Login Status",
+     "type": "httpRequest"
+    },
+    {
+     "name": "HTTP Request Status",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Redis Set A",
+     "type": "redis"
+    },
+    {
+     "name": "Redis Set B",
+     "type": "redis"
+    },
+    {
+     "name": "Status Cancelado ou Agendado?",
+     "type": "if"
+    },
+    {
+     "name": "Edit Fields",
+     "type": "set"
+    },
+    {
+     "name": "Tratar Pedido Nao Encontrado",
+     "type": "code"
+    },
+    {
+     "name": "Pedido Encontrado",
+     "type": "code"
+    },
+    {
+     "name": "Operacao Invalida",
+     "type": "code"
+    },
+    {
+     "name": "Redis Token Info",
+     "type": "redis"
+    },
+    {
+     "name": "If Token Info?",
+     "type": "if"
+    },
+    {
+     "name": "HTTP Login Info",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Redis Set Token Info",
+     "type": "redis"
+    },
+    {
+     "name": "HTTP Request Info",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Extrair Loja Aberta",
+     "type": "code"
+    },
+    {
+     "name": "Tratar Erro Token Info",
+     "type": "code"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Operacao?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Operacao?",
+     "to": "HTTP Login Token",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Operacao?",
+     "to": "Redis Token Cardapio",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Operacao?",
+     "to": "Redis Pedido",
+     "kind": "main",
+     "output": 2
+    },
+    {
+     "from": "Operacao?",
+     "to": "Redis Token Info",
+     "kind": "main",
+     "output": 3
+    },
+    {
+     "from": "Operacao?",
+     "to": "Operacao Invalida",
+     "kind": "main",
+     "output": 4
+    },
+    {
+     "from": "HTTP Login Token",
+     "to": "Redis Set Token",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Token Cardapio",
+     "to": "If Token Cardapio?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Token Cardapio?",
+     "to": "HTTP Request",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Token Cardapio?",
+     "to": "HTTP Login Cardapio",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "HTTP Login Cardapio",
+     "to": "Redis Set Token Cardapio",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Set Token Cardapio",
+     "to": "HTTP Request",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request",
+     "to": "Redis Token Menu",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Token Menu",
+     "to": "Status Loja",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Status Loja",
+     "to": "Enxugar Cardapio",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Pedido",
+     "to": "If Pedido Existe?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Pedido Existe?",
+     "to": "Redis Token Status",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Pedido Existe?",
+     "to": "Edit Fields",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Redis Token Status",
+     "to": "If Token Status?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Token Status?",
+     "to": "HTTP Request Status",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Token Status?",
+     "to": "HTTP Login Status",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "HTTP Login Status",
+     "to": "HTTP Request Status",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request Status",
+     "to": "Redis Set A",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Set A",
+     "to": "Redis Set B",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Set B",
+     "to": "Status Cancelado ou Agendado?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Status Cancelado ou Agendado?",
+     "to": "Edit Fields",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Status Cancelado ou Agendado?",
+     "to": "Pedido Encontrado",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Redis Token Info",
+     "to": "If Token Info?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Token Info?",
+     "to": "HTTP Request Info",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If Token Info?",
+     "to": "HTTP Login Info",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "HTTP Login Info",
+     "to": "Redis Set Token Info",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Set Token Info",
+     "to": "HTTP Request Info",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request Info",
+     "to": "Extrair Loja Aberta",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request Info",
+     "to": "Tratar Erro Token Info",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Tratar Erro Token Info",
+     "to": "HTTP Login Info",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - Criar Pedido Vendor",
+   "nodeCount": 36,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Redis",
+     "type": "redis"
+    },
+    {
+     "name": "HTTP Request",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Parse Endereco",
+     "type": "code"
+    },
+    {
+     "name": "Salvar Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Salvar Telefone",
+     "type": "redis"
+    },
+    {
+     "name": "Salvar Tipo Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Fora da Área?",
+     "type": "if"
+    },
+    {
+     "name": "Fora da Área",
+     "type": "code"
+    },
+    {
+     "name": "Verificar Pedido Duplicado",
+     "type": "code"
+    },
+    {
+     "name": "Linkar Pedido Duplicado",
+     "type": "redis"
+    },
+    {
+     "name": "Corrigir Total Final",
+     "type": "code"
+    },
+    {
+     "name": "Aprovar Pedido",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Limpar Em Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Entrega Perguntada",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Pedido Criado",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Pedido Criado",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Aguardando Comprovante",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Pix Pendente Telefone",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Pagamento Perguntado",
+     "type": "redis"
+    },
+    {
+     "name": "Trava Pagamento Perguntado",
+     "type": "code"
+    },
+    {
+     "name": "Limpar Pagamento Perguntado",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Cartao Tipo",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Cartao Tipo",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Confirmacao",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Entrega Tipo",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Proposta Sub",
+     "type": "redis"
+    },
+    {
+     "name": "Gate Confirmacao",
+     "type": "code"
+    },
+    {
+     "name": "Salvar Proposta",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Proposta",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Confirmacao",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Entrega Tipo",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Estado Pedido Sub",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Estado Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Aguardando Bebida",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Bebida Oferecida",
+     "type": "redis"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Redis",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis",
+     "to": "Buscar Entrega Perguntada",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Salvar Pedido",
+     "to": "Salvar Telefone",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Salvar Telefone",
+     "to": "Salvar Tipo Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Parse Endereco",
+     "to": "Trava Pagamento Perguntado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Fora da Área?",
+     "to": "Fora da Área",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Fora da Área?",
+     "to": "HTTP Request",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "HTTP Request",
+     "to": "Aprovar Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "HTTP Request",
+     "to": "Verificar Pedido Duplicado",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Verificar Pedido Duplicado",
+     "to": "Linkar Pedido Duplicado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Salvar Tipo Pedido",
+     "to": "Limpar Em Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Aprovar Pedido",
+     "to": "Marcar Pedido Criado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Entrega Perguntada",
+     "to": "Buscar Pedido Criado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Pedido Criado",
+     "to": "Buscar Pagamento Perguntado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Pedido Criado",
+     "to": "Salvar Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Aguardando Comprovante",
+     "to": "Marcar Pix Pendente Telefone",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Em Pedido",
+     "to": "Limpar Pagamento Perguntado",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Pix Pendente Telefone",
+     "to": "Marcar Aguardando Bebida",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Pagamento Perguntado",
+     "to": "Buscar Cartao Tipo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Trava Pagamento Perguntado",
+     "to": "Gate Confirmacao",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Pagamento Perguntado",
+     "to": "Limpar Cartao Tipo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Cartao Tipo",
+     "to": "Buscar Confirmacao",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Cartao Tipo",
+     "to": "Limpar Proposta",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Confirmacao",
+     "to": "Buscar Entrega Tipo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Entrega Tipo",
+     "to": "Buscar Proposta Sub",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Proposta Sub",
+     "to": "Buscar Estado Pedido Sub",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Gate Confirmacao",
+     "to": "Salvar Proposta",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Salvar Proposta",
+     "to": "Fora da Área?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Proposta",
+     "to": "Limpar Confirmacao",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Confirmacao",
+     "to": "Limpar Entrega Tipo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Entrega Tipo",
+     "to": "Limpar Estado Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Estado Pedido Sub",
+     "to": "Buscar Bebida Oferecida",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Estado Pedido",
+     "to": "Marcar Aguardando Comprovante",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Aguardando Bebida",
+     "to": "Corrigir Total Final",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Bebida Oferecida",
+     "to": "Parse Endereco",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - Enviar Enquete Feedback",
+   "nodeCount": 4,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Montar Enquete",
+     "type": "code"
+    },
+    {
+     "name": "Enviar Enquete WA Gateway",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Resposta Sucesso",
+     "type": "code"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Montar Enquete",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Montar Enquete",
+     "to": "Enviar Enquete WA Gateway",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Enviar Enquete WA Gateway",
+     "to": "Resposta Sucesso",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - Enviar Feedback Negativo",
+   "nodeCount": 8,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Enviar WA Gateway",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Registrar Falha de Envio",
+     "type": "code"
+    },
+    {
+     "name": "Salvar Falha de Envio",
+     "type": "redis"
+    },
+    {
+     "name": "Checar Detalhe Suficiente",
+     "type": "code"
+    },
+    {
+     "name": "Detalhe Suficiente?",
+     "type": "if"
+    },
+    {
+     "name": "Resposta Sem Detalhe",
+     "type": "code"
+    },
+    {
+     "name": "gravar registro",
+     "type": "postgres"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Checar Detalhe Suficiente",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Enviar WA Gateway",
+     "to": "Registrar Falha de Envio",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Registrar Falha de Envio",
+     "to": "Salvar Falha de Envio",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Checar Detalhe Suficiente",
+     "to": "Detalhe Suficiente?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Detalhe Suficiente?",
+     "to": "gravar registro",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Detalhe Suficiente?",
+     "to": "Resposta Sem Detalhe",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "gravar registro",
+     "to": "Enviar WA Gateway",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - Enviar Foto Cardapio",
+   "nodeCount": 6,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Montar Lista de Fotos",
+     "type": "code"
+    },
+    {
+     "name": "Enviar Fotos WA Gateway",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Resposta Sucesso",
+     "type": "code"
+    },
+    {
+     "name": "Loop Over Items1",
+     "type": "splitInBatches"
+    },
+    {
+     "name": "Wait3",
+     "type": "wait"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Montar Lista de Fotos",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Montar Lista de Fotos",
+     "to": "Loop Over Items1",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Enviar Fotos WA Gateway",
+     "to": "Wait3",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Loop Over Items1",
+     "to": "Resposta Sucesso",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Loop Over Items1",
+     "to": "Enviar Fotos WA Gateway",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Wait3",
+     "to": "Loop Over Items1",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - Escalar Pedido Humano",
+   "nodeCount": 5,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Montar",
+     "type": "code"
+    },
+    {
+     "name": "WA Gateway Avisar Humano",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Desativar Agente",
+     "type": "redis"
+    },
+    {
+     "name": "Resposta",
+     "type": "code"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Montar",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Montar",
+     "to": "WA Gateway Avisar Humano",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "WA Gateway Avisar Humano",
+     "to": "Desativar Agente",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Desativar Agente",
+     "to": "Resposta",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - Perguntar Bebida Combo",
+   "nodeCount": 4,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Buscar Token Cache",
+     "type": "redis"
+    },
+    {
+     "name": "Buscar Cardapio Fresco",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Extrair Refrigerantes Lata",
+     "type": "code"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Buscar Token Cache",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Token Cache",
+     "to": "Buscar Cardapio Fresco",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Cardapio Fresco",
+     "to": "Extrair Refrigerantes Lata",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Sub - Solicitar Alteracao Pedido",
+   "nodeCount": 7,
+   "nodes": [
+    {
+     "name": "When Executed by Another Workflow",
+     "type": "executeWorkflowTrigger"
+    },
+    {
+     "name": "Redis Pedido",
+     "type": "redis"
+    },
+    {
+     "name": "Redis Token",
+     "type": "redis"
+    },
+    {
+     "name": "Decidir",
+     "type": "code"
+    },
+    {
+     "name": "Avisar Humano?",
+     "type": "if"
+    },
+    {
+     "name": "WA Gateway Avisar",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Resposta",
+     "type": "code"
+    }
+   ],
+   "edges": [
+    {
+     "from": "When Executed by Another Workflow",
+     "to": "Redis Pedido",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Pedido",
+     "to": "Redis Token",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis Token",
+     "to": "Decidir",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Decidir",
+     "to": "Avisar Humano?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Avisar Humano?",
+     "to": "WA Gateway Avisar",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Avisar Humano?",
+     "to": "Resposta",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "WA Gateway Avisar",
+     "to": "Resposta",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  },
+  {
+   "workflow": "Webhook - Status Pedido Vendor",
+   "nodeCount": 21,
+   "nodes": [
+    {
+     "name": "Webhook",
+     "type": "webhook"
+    },
+    {
+     "name": "If",
+     "type": "if"
+    },
+    {
+     "name": "Respond to Webhook",
+     "type": "respondToWebhook"
+    },
+    {
+     "name": "Edit Fields",
+     "type": "set"
+    },
+    {
+     "name": "Redis",
+     "type": "redis"
+    },
+    {
+     "name": "If1",
+     "type": "if"
+    },
+    {
+     "name": "Respond to Webhook1",
+     "type": "respondToWebhook"
+    },
+    {
+     "name": "Switch",
+     "type": "switch"
+    },
+    {
+     "name": "WA Gateway",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Respond to Webhook2",
+     "type": "respondToWebhook"
+    },
+    {
+     "name": "Redis2",
+     "type": "redis"
+    },
+    {
+     "name": "Marcar Aguardando Feedback",
+     "type": "redis",
+     "disabled": true
+    },
+    {
+     "name": "DONE - Delivery ou Balcony?",
+     "type": "if"
+    },
+    {
+     "name": "Enviar Enquete Feedback",
+     "type": "executeWorkflow",
+     "calls": "Sub - Enviar Enquete Feedback"
+    },
+    {
+     "name": "Buscar Pix Status",
+     "type": "redis"
+    },
+    {
+     "name": "Pix Sem Comprovante?",
+     "type": "if"
+    },
+    {
+     "name": "Marcar Pix Entregue",
+     "type": "redis"
+    },
+    {
+     "name": "Pedir Comprovante",
+     "type": "httpRequest"
+    },
+    {
+     "name": "Marcar Pedido Aberto",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Pedido Aberto",
+     "type": "redis"
+    },
+    {
+     "name": "Limpar Pedido Ativo",
+     "type": "redis"
+    }
+   ],
+   "edges": [
+    {
+     "from": "Webhook",
+     "to": "If",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If",
+     "to": "Edit Fields",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If",
+     "to": "Marcar Pedido Aberto",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If",
+     "to": "Respond to Webhook",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Edit Fields",
+     "to": "Redis",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis",
+     "to": "Redis2",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If1",
+     "to": "Switch",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "If1",
+     "to": "Respond to Webhook1",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Switch",
+     "to": "Respond to Webhook2",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Switch",
+     "to": "DONE - Delivery ou Balcony?",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Switch",
+     "to": "WA Gateway",
+     "kind": "main",
+     "output": 2
+    },
+    {
+     "from": "Switch",
+     "to": "Buscar Pix Status",
+     "kind": "main",
+     "output": 3
+    },
+    {
+     "from": "Switch",
+     "to": "WA Gateway",
+     "kind": "main",
+     "output": 4
+    },
+    {
+     "from": "Switch",
+     "to": "Respond to Webhook2",
+     "kind": "main",
+     "output": 5
+    },
+    {
+     "from": "WA Gateway",
+     "to": "Respond to Webhook2",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Redis2",
+     "to": "Limpar Pedido Ativo",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "DONE - Delivery ou Balcony?",
+     "to": "Respond to Webhook2",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "DONE - Delivery ou Balcony?",
+     "to": "WA Gateway",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Enviar Enquete Feedback",
+     "to": "Respond to Webhook2",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Buscar Pix Status",
+     "to": "Pix Sem Comprovante?",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Pix Sem Comprovante?",
+     "to": "Marcar Pix Entregue",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Pix Sem Comprovante?",
+     "to": "Enviar Enquete Feedback",
+     "kind": "main",
+     "output": 1
+    },
+    {
+     "from": "Marcar Pix Entregue",
+     "to": "Pedir Comprovante",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Pedir Comprovante",
+     "to": "Respond to Webhook2",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Marcar Pedido Aberto",
+     "to": "Limpar Pedido Aberto",
+     "kind": "main",
+     "output": 0
+    },
+    {
+     "from": "Limpar Pedido Ativo",
+     "to": "If1",
+     "kind": "main",
+     "output": 0
+    }
+   ]
+  }
+ ]
+}
